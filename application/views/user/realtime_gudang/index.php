@@ -30,20 +30,8 @@
                                 <th class="bg-dark text-white">Tanggal</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $no = 1;
-                            foreach ($realtime as $key => $data) {
-                            ?>
-                                <tr>
-                                    <th scope="row"><?php echo $no++ ?></th>
-                                    <td><?php echo $data->nama_barang ?></td>
-                                    <td><?php echo $data->distributor ?></td>
-                                    <td><?php echo $data->keterangan ?></td>
-                                    <td><?php echo $data->tanggal ?></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                        <tbody class="show_product">
+
                         </tbody>
                     </table>
                 </div>

@@ -11,10 +11,15 @@ class RealtimeGudang extends CI_Controller
         $this->load->model('user/RealtimeGudang_m', 'rt_gudang_m');
     }
 
+    public function get_data()
+    {
+        $data = $this->rt_gudang_m->getData()->result();
+        echo json_encode($data);
+    }
+
     public function index()
     {
         $data['tittle'] = "Realtime Gudang";
-        $data['realtime'] = $this->rt_gudang_m->getData()->result();
         $this->template->load('temp_dashboard', 'user/realtime_gudang/index', $data);
     }
 

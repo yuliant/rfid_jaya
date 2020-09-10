@@ -481,23 +481,6 @@ class TemplateProcessor
      * @param mixed $replace Path to image, or array("path" => xx, "width" => yy, "height" => zz)
      * @param int $limit
      */
-
-     //modif added by aditnanda
-    public function setImage($search, $replace)
-    {
-        // Sanity check
-        if (!file_exists($replace))
-        {
-            return;
-        }
-
-        // Delete current image
-        $this->zipClass->deleteName('word/media/' . $search);
-
-        // Add a new one
-        $this->zipClass->addFile($replace, 'word/media/' . $search);
-    }
-    
     public function setImageValue($search, $replace, $limit = self::MAXIMUM_REPLACEMENTS_DEFAULT)
     {
         // prepare $search_replace

@@ -162,12 +162,59 @@ $user = $this->fungsi->user_login();
     <script src="<?php echo base_url(); ?>assets/stisla/js/stisla.js"></script>
 
     <!-- JS Libraies -->
+    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
 
     <!-- Page Specific JS File -->
 
     <!-- Template JS File -->
     <script src="<?php echo base_url(); ?>assets/stisla/js/scripts.js"></script>
     <script src="<?php echo base_url(); ?>assets/stisla/js/custom.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // CALL FUNCTION SHOW PRODUCT
+            show_product();
+
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+            var pusher = new Pusher('451054362d659535edfc', {
+                cluster: 'ap1',
+                forceTLS: true
+            });
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                if (data.message === 'success') {
+                    show_product();
+                }
+            });
+
+            // FUNCTION SHOW PRODUCT
+            function show_product() {
+                $.ajax({
+                    url: '<?php echo site_url("user/RealtimeGudang/get_data"); ?>',
+                    type: 'GET',
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        var html = '';
+                        var count = 1;
+                        var i;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<th>' + count++ + '</th>' +
+                                '<td>' + data[i].nama_barang + '</td>' +
+                                '<td>' + data[i].distributor + '</td>' +
+                                '<td>' + data[i].keterangan + '</td>' +
+                                '<td>' + data[i].tanggal + '</td>' +
+                                '</tr>';
+                        }
+                        $('.show_product').html(html);
+                    }
+
+                });
+            }
+        });
+    </script>
 
     <!-- untuk memunculkan nama file gambar -->
     <script>

@@ -14,7 +14,6 @@ class Rfid extends CI_Controller
     {
         $id_barang = htmlspecialchars($this->input->get('id_barang', TRUE));
         $status = htmlspecialchars($this->input->get('status', TRUE));
-
         if ($id_barang == null || $status == null) {
             $kode = [
                 'kode' => 500,
@@ -22,22 +21,32 @@ class Rfid extends CI_Controller
                 'keterangan' => "Response null, you must solved now",
             ];
         } else {
-
             $cekBarang = $this->jenis_barang_m->get($id_barang);
-
             if ($cekBarang->num_rows() > 0) {
                 $kode = [
                     'kode' => 200,
                     'status' => "Dikenali",
                     'keterangan' => "Barang $status berhasil didata",
                 ];
-
                 $data = [
                     'id_barang' => $id_barang,
                     'status' => $status
                 ];
-
                 $this->rt_gudang_m->input($data);
+                include_once APPPATH . 'vendor/autoload.php';
+                $options = array(
+                    'cluster' => 'ap1',
+                    'useTLS' => true
+                );
+                $pusher = new Pusher\Pusher(
+                    '451054362d659535edfc', //ganti dengan App_key pusher Anda
+                    'bda802f53aee02e6fff7', //ganti dengan App_secret pusher Anda
+                    '1069590', //ganti dengan id pusher Anda
+                    $options
+                );
+
+                $data['message'] = 'success';
+                $pusher->trigger('my-channel', 'my-event', $data);
             } else {
                 $kode = [
                     'kode' => 404,
@@ -46,7 +55,6 @@ class Rfid extends CI_Controller
                 ];
             }
         }
-
         $jsondata = json_encode($kode);
         echo $jsondata;
     }
