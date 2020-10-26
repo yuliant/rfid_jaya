@@ -22,7 +22,7 @@ class JenisBarang extends CI_Controller
 
     public function input()
     {
-        $this->form_validation->set_rules('id_barang', 'ID Barang', 'required|numeric|min_length[1]|max_length[10]');
+        $this->form_validation->set_rules('id_barang', 'ID Barang', 'required|numeric|min_length[1]|max_length[25]');
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required|max_length[25]');
         $this->form_validation->set_rules('distributor', 'Distributor', 'trim|required|max_length[25]');
         if ($this->form_validation->run() == false) {
@@ -39,7 +39,7 @@ class JenisBarang extends CI_Controller
 
     public function edit($id)
     {
-        $this->form_validation->set_rules('id_barang', 'ID Barang', 'required|numeric|min_length[1]|max_length[10]');
+        $this->form_validation->set_rules('id_barang', 'ID Barang', 'required|numeric|min_length[1]|max_length[25]');
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required|max_length[25]');
         $this->form_validation->set_rules('distributor', 'Distributor', 'trim|required|max_length[25]');
         //message

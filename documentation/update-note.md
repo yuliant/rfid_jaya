@@ -1,5 +1,8 @@
 # Update Note
 
+## Version 0.0.3 (beta) 26 Okt 2020
+* Fixing other bug
+
 ## Version 0.0.2 (beta) 10 Sept 2020
 * Menggunakan pusher sebagai media realtime data
 

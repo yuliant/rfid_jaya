@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 08, 2020 at 09:19 AM
+-- Generation Time: Oct 26, 2020 at 03:09 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.5
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rfid_new`
+-- Database: `rfid`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `data_jenis_barang` (
-  `id_barang` int(11) NOT NULL,
+  `id_barang` varchar(25) NOT NULL,
   `nama_barang` varchar(25) NOT NULL,
   `detail_barang` text,
   `distributor` varchar(25) NOT NULL
@@ -39,8 +39,10 @@ CREATE TABLE `data_jenis_barang` (
 --
 
 INSERT INTO `data_jenis_barang` (`id_barang`, `nama_barang`, `detail_barang`, `distributor`) VALUES
-(1, 'rokok', 'untuk merokok', 'PT Tobanga DO'),
-(2, 'Sembako', 'ini sembako kita', 'PT Sembako Raya');
+('1', 'rokok', 'untuk merokok', 'PT Tobanga DO'),
+('2', 'Sembako', 'ini sembako kita', 'PT Sembako Raya'),
+('21518012125', 'tags putih', 'sedap', 'PT. MI'),
+('247131202122', 'gantungan biru', 'ini hp', 'pt indofood');
 
 -- --------------------------------------------------------
 
@@ -50,10 +52,22 @@ INSERT INTO `data_jenis_barang` (`id_barang`, `nama_barang`, `detail_barang`, `d
 
 CREATE TABLE `data_realtime_gudang` (
   `id_realtime` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
+  `id_barang` varchar(25) NOT NULL,
   `keterangan` varchar(11) NOT NULL,
   `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_realtime_gudang`
+--
+
+INSERT INTO `data_realtime_gudang` (`id_realtime`, `id_barang`, `keterangan`, `tanggal`) VALUES
+(135, '21518012125', 'KELUAR', '2020-10-13 08:12:09'),
+(136, '247131202122', 'KELUAR', '2020-10-13 08:12:19'),
+(137, '247131202122', 'KELUAR', '2020-10-13 08:12:57'),
+(138, '21518012125', 'KELUAR', '2020-10-13 08:13:02'),
+(139, '247131202122', 'KELUAR', '2020-10-26 10:06:29'),
+(140, '247131202122', 'KELUAR', '2020-10-26 10:06:40');
 
 -- --------------------------------------------------------
 
@@ -110,7 +124,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `data_realtime_gudang`
 --
 ALTER TABLE `data_realtime_gudang`
-  MODIFY `id_realtime` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_realtime` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addBarangModalLabel">Panduan Pembayaran Manual</h5>
+                <h5 class="modal-title" id="addBarangModalLabel">Tambah Jenis Barang</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>ID Barang</label>
-                        <input type="text" class="form-control" id="id_barang" name="id_barang">
+                        <input type="number" class="form-control" id="id_barang" name="id_barang">
                     </div>
                     <div class="form-group">
                         <label>Nama Barang</label>
